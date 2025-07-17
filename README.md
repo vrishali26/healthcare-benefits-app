@@ -1,69 +1,62 @@
-# React + TypeScript + Vite
+# 💼 Healthcare Benefits Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React + TypeScript application that calculates and displays the cost of an employee’s healthcare benefits package per paycheck.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 Problem Statement
 
-## Expanding the ESLint configuration
+Employers offer healthcare benefits to their employees, which are deducted from each paycheck. This app allows employees to:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- View their total benefits cost per paycheck
+- See a breakdown of costs for employees and dependents
+- Add, edit, or remove employees and their dependents
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 💻 Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **React** (w/ Vite)
+- **TypeScript**
+- **Tailwind CSS** for styling
+- **In-memory mock API** (using static JSON)
+
+---
+
+## 📐 Benefit Calculation Rules
+
+- Employee benefits cost: `$1000/year`
+- Dependent benefits cost: `$500/year` each
+- **10% discount** applied to any name starting with **'A'** (case-insensitive)
+- There are **26 paychecks per year**
+
+---
+
+## 📸 Features
+
+- 🧑 View all employees and their dependents
+- ➕ Add/edit/delete employees and dependents
+- ✏️ Inline editing
+- ✅ Form validation
+- 💰 Real-time preview of benefit costs per paycheck and annually
+- ♿ Accessible and responsive UI
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/healthcare-benefits-calculator.git
+cd healthcare-benefits-calculator
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Run Application
+```bash
+npm start
 ```
