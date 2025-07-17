@@ -28,23 +28,31 @@ function App() {
 
     setEmployees(updated);
     setEditEmployee(null);
-  }
+  };
 
   const onUpdate = (emp: Employee) => {
     setEditEmployee(emp);
-  }
+  };
 
   const onDelete = (id: string) => {
     const updated = employees.filter(emp => emp.id !== id);
     setEmployees(updated);
-  }
+  };
 
   return (
     <div className="App">
-      <header className="App-header my-5">
-        <h2 className='text-2xl font-semibold mb-2'>Healthcare Benefits</h2>
+      {/* Skip Link */}
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-white p-2 z-50">
+        Skip to main content
+      </a>
+
+      {/* Page Header */}
+      <header className="App-header my-5" role="banner">
+        <h1 className="text-2xl font-semibold mb-2">Healthcare Benefits</h1>
       </header>
-      <main>
+
+      {/* Main Content */}
+      <main id="main" role="main">
         <AddEmployee editEmployee={editEmployee} onAdd={onAdd} />
         <ShowBenefits employees={employees} />
         <EmployeeList employees={employees} onUpdate={onUpdate} onDelete={onDelete} />

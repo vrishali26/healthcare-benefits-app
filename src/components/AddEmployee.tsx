@@ -40,8 +40,8 @@ export default function AddEmployee({ editEmployee, onAdd }: Props) {
     onAdd(data);
     setName('');
     setDependents([]);
-    setErrors(null)
-  }
+    setErrors(null);
+  };
 
   const handleDependentChange = (index: number, value: string) => {
     const updated = [...dependents];
@@ -59,38 +59,81 @@ export default function AddEmployee({ editEmployee, onAdd }: Props) {
   };
 
   return (
-    <>
-      <div className="border p-3 space-y-4 mb-6">
-        <h2 className='text-xl font-semibold mb-2'>Add Employee Details</h2>
-        <form onSubmit={handleSubmit}>
-          <div className='px-3 text-left'>
-            <div className='flex mb-2'>
-              <label className="block mr-3 my-2 text-sm font-medium">Employee Name</label>
-              <input value={name} onChange={e => setName(e.target.value)} className="p-2 border rounded-xl" />
-            </div>
-            <div className='flex mb-2'>
-              <label className="block mr-3 my-2 text-sm font-medium">Add Dependents</label>
-              <button type="button" onClick={handleAddDependent} className="p-2 rounded"><FaPlus /></button>
-            </div>
-            <div>
-              {dependents.map((dep, i) => (
-                <div key={dep.id} className="mb-2">
-                  <input
-                    value={dep.name}
-                    onChange={e => handleDependentChange(i, e.target.value)}
-                    className="p-2 mr-3 border rounded-xl"
-                  />
-                  <button type="button" onClick={() => handleRemoveDependent(i)} className="p-2"><FaTrash /></button>
-                </div>
-              ))}
-            </div>
-            <div>
-              {errors && <p className="text-red-500 text-sm mb-2">{errors}</p>}
-            </div>
-            <button type="submit" className="bg-blue-500 text-white rounded">Save Employee</button>
+    <div className="border p-3 space-y-4 mb-6">
+      <h2 className="text-xl font-semibold mb-2">Add Employee Details</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="px-3 text-left">
+          {/* Employee Name */}
+          <div className="flex mb-2 items-center">
+            <label htmlFor="employeeName" className="block mr-3 my-2 text-sm font-medium">
+              Employee Name
+            </label>
+            <input
+              id="employeeName"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="p-2 border rounded-xl"
+              aria-required="true"
+            />
           </div>
-        </form>
-      </div>
-    </>
-  )
+
+          {/* Add Dependent Button */}
+          <div className="flex mb-2 items-center">
+            <label className="block mr-3 my-2 text-sm font-medium">Add Dependents</label>
+            <button
+              type="button"
+              onClick={handleAddDependent}
+              className="p-2 rounded"
+              aria-label="Add dependent"
+            >
+              <FaPlus />
+            </button>
+          </div>
+
+          {/* Dependents List */}
+          <fieldset>
+            <legend className="sr-only">Dependents</legend>
+            {dependents.map((dep, i) => (
+              <div key={dep.id} className="mb-2 flex items-center">
+                <label htmlFor={`dependent-${dep.id}`} className="sr-only">
+                  Dependent {i + 1} Name
+                </label>
+                <input
+                  id={`dependent-${dep.id}`}
+                  value={dep.name}
+                  onChange={(e) => handleDependentChange(i, e.target.value)}
+                  className="p-2 mr-3 border rounded-xl"
+                  placeholder={`Dependent ${i + 1}`}
+                />
+                <button
+                  type="button"
+                  onClick={() => handleRemoveDependent(i)}
+                  className="p-2"
+                  aria-label={`Remove dependent ${i + 1}`}
+                >
+                  <FaTrash />
+                </button>
+              </div>
+            ))}
+          </fieldset>
+
+          {/* Error Message */}
+          {errors && (
+            <div role="alert" className="text-red-500 text-sm mb-2">
+              {errors}
+            </div>
+          )}
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="bg-blue-500 text-white rounded px-4 py-2"
+            aria-label="Save employee details"
+          >
+            Save Employee
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
