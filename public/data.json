@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "name": "Alice Johnson",
+    "dependents": [
+      { "id": "d1", "name": "Andrew Jr." },
+      { "id": "d2", "name": "Beth" }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Bob Smith",
+    "dependents": []
+  },
+  {
+    "id": "3",
+    "name": "John Smith",
+    "dependents": []
+  },
+  {
+    "id": "4",
+    "name": "Alexa Johnson",
+    "dependents": [
+      { "id": "d3", "name": "Janice" },
+      { "id": "d5", "name": "Adela" },
+      { "id": "d4", "name": "Dan" }
+    ]
+  }
+]
